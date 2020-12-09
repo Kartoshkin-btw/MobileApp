@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:padding="6dip" >
+
+    <TextView
+        android:id="@+id/price"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="176dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="-85dp"
+        android:gravity="center_vertical"
+        android:layout_toEndOf="@+id/title"
+        android:layout_toRightOf="@+id/title"
+        android:ellipsize="marquee"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="290dp"
+        android:layout_height="30dp"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="242dp"
+        android:gravity="center_vertical"
+        android:textSize="20dp" />
+
+</RelativeLayout>
