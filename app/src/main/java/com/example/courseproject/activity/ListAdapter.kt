@@ -1,11 +1,9 @@
 package com.example.courseproject.activity
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.fragment.app.FragmentActivity
 import com.example.courseproject.R
 
 class ListAdapter(private val context: Activity, private val title: Array<String>, private val price: Array<String>): ArrayAdapter<String>(context, R.layout.list_item, title) {

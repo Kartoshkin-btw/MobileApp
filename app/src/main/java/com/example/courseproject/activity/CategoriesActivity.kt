@@ -3,18 +3,16 @@ package com.example.courseproject.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import androidx.viewpager.widget.ViewPager
 import com.example.courseproject.R
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_categories.*
 import kotlinx.android.synthetic.main.appbar.*
-
 class CategoriesActivity : AppCompatActivity() {
+
     lateinit var tabLayout: TabLayout
     lateinit var viewPager: ViewPager
-    var categories = arrayOf("123","234","345","345","345","345","345","345","345","345","345","345","345","345","345","345","345","345","345","345")
-    var price = arrayOf("100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100","100")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
@@ -41,12 +39,6 @@ class CategoriesActivity : AppCompatActivity() {
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
-        val listAdapter = ListAdapter(this,categories,price)
-//        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, categories)
-        //categoriesList.adapter = listAdapter
+
     }
-}
-
-private fun TabLayout.setTabTextColors(s: String) {
-
 }
