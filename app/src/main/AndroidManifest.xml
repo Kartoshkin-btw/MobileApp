@@ -15,7 +15,6 @@
         <activity android:name=".activity.CategoriesPurchasedActivity"></activity>
         <activity android:name=".activity.CategoriesPaidActivity" />
         <activity android:name=".activity.CategoriesFreeActivity" />
-        <activity android:name=".activity.CategoriesAllActivity" />
         <activity android:name=".activity.ChangeCategoryActivity" />
         <activity android:name=".activity.PlayerNamesActivity" />
         <activity android:name=".activity.RulesActivity" />

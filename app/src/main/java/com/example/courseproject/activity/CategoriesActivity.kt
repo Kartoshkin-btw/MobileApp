@@ -23,7 +23,6 @@ class CategoriesActivity : AppCompatActivity() {
         }
         tabLayout = findViewById(R.id.tabLayout)
         viewPager = findViewById(R.id.view_pager)
-        tabLayout.addTab(tabLayout.newTab().setText("Все"))
         tabLayout.addTab(tabLayout.newTab().setText("Бесплатные"))
         tabLayout.addTab(tabLayout.newTab().setText("Платные"))
         tabLayout.addTab(tabLayout.newTab().setText("Купленные"))

@@ -9,7 +9,8 @@ import kotlinx.android.synthetic.main.mainappbar.*
 
 class MainActivity : AppCompatActivity() {
     companion object {
-        const val Token = "Bearer "
+        var Token = ""
+        var Role = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

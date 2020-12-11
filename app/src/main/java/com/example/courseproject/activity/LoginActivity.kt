@@ -51,9 +51,7 @@ class LoginActivity : AppCompatActivity() {
                 ) {
                     val res = response.body()
                     if(response.code() == 200 && res != null){
-                        newIntent.apply {
-                            putExtra(MainActivity.Token, res.token)
-                        }
+                        MainActivity.Token = "Bearer " + res.token
                         startActivity(newIntent)
                     } else {
                         error_msg_auth.text = "Неверное имя пользователя или пароль"

@@ -17,15 +17,12 @@ internal class Adapter (
         override fun getItem(position: Int): Fragment {
             return when (position) {
                 0 -> {
-                    CategoriesAllActivity()
-                }
-                1 -> {
                     CategoriesFreeActivity()
                 }
-                2 -> {
+                1 -> {
                     CategoriesPaidActivity()
                 }
-                3 -> {
+                2 -> {
                     CategoriesPurchasedActivity()
                 }
                 else -> getItem(position)
