@@ -18,8 +18,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class CategoriesFreeActivity : Fragment() {
-    private var list = mutableListOf<CategoryResponse>()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +27,7 @@ class CategoriesFreeActivity : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        recyclerView.layoutManager = LinearLayoutManager(activity)
         val request = Client.buildService(JsonPlaceHolderApi::class.java)
         val response = request.getFreeCategories()
         response.enqueue(object: Callback<List<CategoryResponse>> {
@@ -46,16 +45,10 @@ class CategoriesFreeActivity : Fragment() {
 
                 if(response.code() == 200){
                     if (res != null) {
-                        list = res.toMutableList()
+                        recyclerView.adapter = RecyclerAdapterNoClick(res.toMutableList())
                     }
                 }
             }
-
         } )
-
-        recyclerView.apply {
-            layoutManager = LinearLayoutManager(activity)
-            adapter = RecyclerAdapter(list)
-        }
     }
 }

@@ -4,11 +4,9 @@ import com.example.courseproject.body.AuthenticateBody
 import com.example.courseproject.body.RegistrationBody
 import com.example.courseproject.response.AuthenticationResponse
 import com.example.courseproject.response.CategoryResponse
+import com.example.courseproject.response.QuestionResponse
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface JsonPlaceHolderApi {
 
@@ -27,4 +25,8 @@ interface JsonPlaceHolderApi {
     @Headers("Content-Type: application/json")
     @GET("api/categories/admin")
     fun getAdminCategories(): Call<List<CategoryResponse>>
+
+    @Headers("Content-Type: application/json")
+    @GET("api/questions/{id}")
+    fun getQuestion(@Path("id") id: Int): Call<List<QuestionResponse>>
 }
