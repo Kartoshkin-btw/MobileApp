@@ -23,6 +23,10 @@ interface JsonPlaceHolderApi {
     fun getFreeCategories(): Call<List<CategoryResponse>>
 
     @Headers("Content-Type: application/json")
+    @GET("api/categories/user")
+    fun getPurchasedCategories(@Header("Authorization") token: String): Call<List<CategoryResponse>>
+
+    @Headers("Content-Type: application/json")
     @GET("api/categories/admin")
     fun getAdminCategories(): Call<List<CategoryResponse>>
 

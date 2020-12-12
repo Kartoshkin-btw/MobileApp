@@ -31,4 +31,4 @@ internal class Adapter (
         override fun getCount(): Int {
             return totalTabs
         }
-}
+    }

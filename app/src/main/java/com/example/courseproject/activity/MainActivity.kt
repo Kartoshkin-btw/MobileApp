@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         var Token = ""
         var Role = ""
+        var Name = ""
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

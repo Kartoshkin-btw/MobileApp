@@ -9,9 +9,14 @@ import android.util.Log
 import android.view.View
 import com.example.courseproject.Client
 import com.example.courseproject.R
+import com.example.courseproject.activity.auth.ChangeCategoryAuthActivity
+import com.example.courseproject.activity.unauth.ChangeCategoryActivity
 import com.example.courseproject.api.JsonPlaceHolderApi
 import com.example.courseproject.response.QuestionResponse
 import kotlinx.android.synthetic.main.activity_play.*
+import kotlinx.android.synthetic.main.activity_play.playerName
+import kotlinx.android.synthetic.main.activity_play.playerName2
+import kotlinx.android.synthetic.main.activity_player_names.*
 import kotlinx.android.synthetic.main.appbar.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,7 +51,12 @@ class PlayActivity : AppCompatActivity() {
         setContentView(R.layout.activity_play)
         mainText.text="Ответь за 5 секунд"
         imageButton.setOnClickListener {
-            val newIntent = Intent (this, ChangeCategoryActivity::class.java)
+            val newIntent:Intent
+            if (MainActivity.Role.isEmpty()) {
+                newIntent = Intent(this, ChangeCategoryActivity::class.java)
+            } else {
+                newIntent = Intent(this, ChangeCategoryAuthActivity::class.java)
+            }
             startActivity(newIntent)
         }
 

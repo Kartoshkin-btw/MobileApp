@@ -4,7 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.courseproject.R
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.courseproject.activity.auth.ChangeCategoryAuthActivity
+import com.example.courseproject.activity.unauth.ChangeCategoryActivity
 import kotlinx.android.synthetic.main.activity_main.button
 import kotlinx.android.synthetic.main.activity_player_names.*
 import kotlinx.android.synthetic.main.appbar.*
@@ -18,11 +19,16 @@ class PlayerNamesActivity : AppCompatActivity() {
             val newIntent = Intent (this, MainActivity::class.java)
             startActivity(newIntent)
         }
+        playerName.setText(MainActivity.Name)
         button.setOnClickListener {
-            val newIntent = Intent (this, ChangeCategoryActivity::class.java).apply {
-                putExtra("name1", playerName.text.toString())
-                putExtra("name2", playerName2.text.toString())
+            val newIntent:Intent
+            if (MainActivity.Role.isEmpty()) {
+                newIntent = Intent(this, ChangeCategoryActivity::class.java)
+            } else {
+                newIntent = Intent(this, ChangeCategoryAuthActivity::class.java)
             }
+            newIntent.putExtra("name1", playerName.text.toString())
+            newIntent.putExtra("name2", playerName2.text.toString())
             startActivity(newIntent)
         }
     }
