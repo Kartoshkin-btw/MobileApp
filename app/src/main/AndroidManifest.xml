@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.auth.CategoriesUsersActivity"></activity>
+        <activity android:name=".activity.auth.UsersCategoryActivity"></activity>
+        <activity android:name=".activity.auth.StatisticActivity" />
+        <activity android:name=".activity.auth.Profile" />
+        <activity android:name=".activity.auth.CategoriesUsersActivity" />
         <activity android:name=".activity.auth.CategoriesPaidAuthActivity" />
         <activity android:name=".activity.auth.CategoriesAuthActivity" />
         <activity android:name=".activity.auth.ChangeUsersActivity" />

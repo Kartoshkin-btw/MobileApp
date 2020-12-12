@@ -17,11 +17,19 @@
         />
     <TextView
         android:id="@+id/mainText"
-        android:layout_width="wrap_content"
+        android:layout_width="235dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30sp"
         android:textSize="26dp"
         android:textColor="#FFFFFF"
         />
+    <TextView
+        android:id="@+id/balanceText"
+        android:layout_width="112dp"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:visibility="invisible"
+        android:layout_marginRight="4dp"
+        android:textColor="#FFFFFF"/>
 
 </androidx.appcompat.widget.Toolbar>
