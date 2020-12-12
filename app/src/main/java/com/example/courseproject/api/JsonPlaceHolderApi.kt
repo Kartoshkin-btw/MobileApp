@@ -54,7 +54,7 @@ interface JsonPlaceHolderApi {
 
     @Headers("Content-Type: application/json")
     @GET("api/questions/{id}")
-    fun getQuestion(@Path("id") id: Int): Call<List<QuestionResponse>>
+    fun getQuestions(@Path("id") id: Int): Call<List<QuestionResponse>>
 
     @Headers("Content-Type: application/json")
     @GET("api/purchases/statistic/{date1}/{date2}")

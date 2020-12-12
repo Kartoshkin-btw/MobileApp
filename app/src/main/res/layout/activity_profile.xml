@@ -38,7 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="10dp"
-        android:text="Username "
         android:textSize="24dp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -59,22 +58,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
-        android:text="Name "
         android:textSize="24dp"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/usernameText" />
-
-    <Button
-        android:id="@+id/changePassword"
-        android:layout_width="194dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="50dp"
-        android:background="#00B0FF"
-        android:text="Изменить пароль"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bonusButton" />
 
     <Button
         android:id="@+id/userCategories"
@@ -89,16 +75,29 @@
         app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
     <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="194dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="50dp"
+        android:background="#00B0FF"
+        android:text="Выйти"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bonusButton" />
+
+    <Button
         android:id="@+id/statisticButton"
         android:layout_width="194dp"
         android:layout_height="42dp"
         android:layout_marginTop="50dp"
         android:background="#00B0FF"
+        android:visibility="invisible"
         android:text="Статистика"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changePassword" />
+        app:layout_constraintTop_toBottomOf="@+id/logoutButton" />
 
     <Button
         android:id="@+id/bonusButton"

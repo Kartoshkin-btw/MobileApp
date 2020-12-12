@@ -57,11 +57,15 @@ class Profile : AppCompatActivity() {
             val newIntent = Intent(this, UsersCategoryActivity::class.java)
             startActivity(newIntent)
         }
-        changePassword.setOnClickListener {
-
-        }
         bonusButton.setOnClickListener {
 
+        }
+        logoutButton.setOnClickListener {
+            MainActivity.Name = ""
+            MainActivity.Token = ""
+            MainActivity.Role = ""
+            val newIntent = Intent(this, MainActivity::class.java)
+            startActivity(newIntent)
         }
         statisticButton.setOnClickListener {
             val newIntent = Intent(this, StatisticActivity::class.java)

@@ -61,8 +61,7 @@ class PlayActivity : AppCompatActivity() {
         }
 
         val request = Client.buildService(JsonPlaceHolderApi::class.java)
-        val i = intent.getStringExtra("categoryID").toString().toInt()
-        val response = request.getQuestion(i)
+        val response = request.getQuestions(intent.getStringExtra("categoryID").toString().toInt())
         response.enqueue(object: Callback<List<QuestionResponse>> {
 
             override fun onFailure(call: Call<List<QuestionResponse>>, t: Throwable) {
