@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.courseproject.R
 
-class ListAdapter(private val context: Activity, private val title: Array<String>, private val price: Array<String>): ArrayAdapter<String>(context, R.layout.list_item, title) {
+class ListAdapter(private val context: Activity, private val categories: List<String>, private val count: List<Int>): ArrayAdapter<String>(context, R.layout.list_item, categories) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater = context.layoutInflater
         val rowView = inflater.inflate(R.layout.list_item, null, true)
 
-        val titleText = rowView.findViewById(R.id.title) as TextView
-        val priceText = rowView.findViewById(R.id.price) as TextView
-        titleText.text = title[position]
-        priceText.text = price[position]
+        val categoryText = rowView.findViewById(R.id.categoryText) as TextView
+        val countText = rowView.findViewById(R.id.countText) as TextView
+        categoryText.text = categories[position]
+        countText.text = count[position].toString()
 
         return rowView
     }
