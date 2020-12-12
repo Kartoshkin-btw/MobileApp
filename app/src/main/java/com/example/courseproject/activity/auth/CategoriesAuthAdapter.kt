@@ -5,28 +5,27 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.courseproject.activity.CategoriesFreeActivity
-import com.example.courseproject.activity.CategoriesPaidActivity
-import com.example.courseproject.activity.CategoriesPurchasedActivity
 
 @Suppress("DEPRECATION")
-internal class CategoryAdapter (
+internal class CategoriesAuthAdapter (
     var context: Activity,
     fm: FragmentManager,
-    var totalTabs: Int,
-    var name1: String,
-    var name2: String
+    var totalTabs: Int
 ) :
     FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                ChangeFreeActivity(context, name1, name2)
+                CategoriesFreeActivity()
             }
             1 -> {
-                ChangePurchasedActivity(context, name1, name2)
+                CategoriesPaidAuthActivity(context)
             }
             2 -> {
-                ChangeUsersActivity(context, name1, name2)
+                CategoriesPurchasedActivity()
+            }
+            3 -> {
+                CategoriesUsersActivity()
             }
             else -> getItem(position)
         }

@@ -1,8 +1,5 @@
-package com.example.courseproject.activity.auth
+package com.example.courseproject.activity.unauth
 
-import android.app.Activity
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,9 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.courseproject.Client
 import com.example.courseproject.R
-import com.example.courseproject.activity.MainActivity
-import com.example.courseproject.activity.PlayActivity
 import com.example.courseproject.activity.RecyclerAdapter
+import com.example.courseproject.activity.RecyclerAdapterNoClick
 import com.example.courseproject.api.JsonPlaceHolderApi
 import com.example.courseproject.response.CategoryResponse
 import kotlinx.android.synthetic.main.activity_categories_free.*
@@ -23,9 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ChangeUsersActivity(val context: Activity, private val name1: String, private val name2: String) : Fragment(), RecyclerAdapter.OnItemClickListener {
-
-    private var list = mutableListOf<CategoryResponse>()
+class CategoriesPaidActivity : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,12 +31,12 @@ class ChangeUsersActivity(val context: Activity, private val name1: String, priv
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
         val request = Client.buildService(JsonPlaceHolderApi::class.java)
-        val response = request.getCustomCategories(MainActivity.Token)
+        val response = request.getPaidCategories()
         response.enqueue(object: Callback<List<CategoryResponse>> {
 
             override fun onFailure(call: Call<List<CategoryResponse>>, t: Throwable){
                 Log.i("ITEM", "Failure")
-                Toast.makeText(this@ChangeUsersActivity.context, "${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CategoriesPaidActivity.context, "${t.message}", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(
@@ -53,21 +47,10 @@ class ChangeUsersActivity(val context: Activity, private val name1: String, priv
 
                 if(response.code() == 200){
                     if (res != null) {
-                        list = res.toMutableList()
-                        recyclerView.adapter = RecyclerAdapter(false, list, this@ChangeUsersActivity)
+                        recyclerView.adapter = RecyclerAdapterNoClick(true, res.toMutableList())
                     }
                 }
             }
-
         } )
-    }
-
-    override fun onItemClick(position: Int) {
-        val newIntent = Intent (context, PlayActivity::class.java).apply {
-            putExtra("name1", name1)
-            putExtra("name2", name2)
-            putExtra("categoryID", list[position].id.toString())
-        }
-        startActivity(newIntent)
     }
 }

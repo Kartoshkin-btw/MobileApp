@@ -1,11 +1,10 @@
-package com.example.courseproject.activity
+package com.example.courseproject.activity.unauth
 
 import android.app.Activity
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.courseproject.response.CategoryResponse
+import com.example.courseproject.activity.CategoriesFreeActivity
 
 @Suppress("DEPRECATION")
 internal class Adapter (
@@ -21,9 +20,6 @@ internal class Adapter (
                 }
                 1 -> {
                     CategoriesPaidActivity()
-                }
-                2 -> {
-                    CategoriesPurchasedActivity()
                 }
                 else -> getItem(position)
             }

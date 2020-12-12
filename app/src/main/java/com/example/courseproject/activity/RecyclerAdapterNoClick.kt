@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.courseproject.R
 import com.example.courseproject.response.CategoryResponse
 
-class RecyclerAdapterNoClick (private val list: List<CategoryResponse>): RecyclerView.Adapter<RecyclerAdapterNoClick.ViewHolder>(){
+class RecyclerAdapterNoClick (private val isPrice: Boolean, private val list: List<CategoryResponse>): RecyclerView.Adapter<RecyclerAdapterNoClick.ViewHolder>(){
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
         val itemTitle: TextView = itemView.findViewById(R.id.title)
+        val itemPrice: TextView = itemView.findViewById(R.id.price)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,11 +23,11 @@ class RecyclerAdapterNoClick (private val list: List<CategoryResponse>): Recycle
 
     override fun onBindViewHolder(holder: RecyclerAdapterNoClick.ViewHolder, position: Int) {
         holder.itemTitle.text = list[position].title
+        if (isPrice)
+            holder.itemPrice.text = list[position].price.toString()
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
-
-
 }

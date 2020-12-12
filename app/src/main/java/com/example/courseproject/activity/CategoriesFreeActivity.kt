@@ -45,7 +45,7 @@ class CategoriesFreeActivity : Fragment() {
 
                 if(response.code() == 200){
                     if (res != null) {
-                        recyclerView.adapter = RecyclerAdapterNoClick(res.toMutableList())
+                        recyclerView.adapter = RecyclerAdapterNoClick(false ,res.toMutableList())
                     }
                 }
             }

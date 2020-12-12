@@ -12,12 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.auth.ChangeUsersActivity"></activity>
+        <activity android:name=".activity.auth.CategoriesUsersActivity"></activity>
+        <activity android:name=".activity.auth.CategoriesPaidAuthActivity" />
+        <activity android:name=".activity.auth.CategoriesAuthActivity" />
+        <activity android:name=".activity.auth.ChangeUsersActivity" />
         <activity android:name=".activity.auth.ChangePurchasedActivity" />
         <activity android:name=".activity.auth.ChangeFreeActivity" />
         <activity android:name=".activity.auth.ChangeCategoryAuthActivity" />
-        <activity android:name=".activity.CategoriesPurchasedActivity" />
-        <activity android:name=".activity.CategoriesPaidActivity" />
+        <activity android:name=".activity.auth.CategoriesPurchasedActivity" />
+        <activity android:name=".activity.unauth.CategoriesPaidActivity" />
         <activity android:name=".activity.CategoriesFreeActivity" />
         <activity android:name=".activity.unauth.ChangeCategoryActivity" />
         <activity android:name=".activity.PlayerNamesActivity" />
@@ -25,7 +28,7 @@
         <activity android:name=".activity.RegistrationActivity" />
         <activity android:name=".activity.PlayActivity" />
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.CategoriesActivity" />
+        <activity android:name=".activity.unauth.CategoriesActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

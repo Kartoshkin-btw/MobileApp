@@ -1,6 +1,5 @@
-package com.example.courseproject.activity
+package com.example.courseproject.activity.auth
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.courseproject.Client
 import com.example.courseproject.R
+import com.example.courseproject.activity.MainActivity
+import com.example.courseproject.activity.RecyclerAdapterNoClick
 import com.example.courseproject.api.JsonPlaceHolderApi
 import com.example.courseproject.response.CategoryResponse
 import kotlinx.android.synthetic.main.activity_categories_free.*
@@ -18,24 +19,24 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CategoriesPaidActivity : Fragment(), RecyclerAdapter.OnItemClickListener {
+class CategoriesPurchasedActivity : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? =
-        inflater.inflate(R.layout.activity_categories_paid, container, false)
+        inflater.inflate(R.layout.activity_categories_free, container, false)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView.layoutManager = LinearLayoutManager(activity)
         val request = Client.buildService(JsonPlaceHolderApi::class.java)
-        val response = request.getFreeCategories()
+        val response = request.getPurchasedCategories(MainActivity.Token)
         response.enqueue(object: Callback<List<CategoryResponse>> {
 
             override fun onFailure(call: Call<List<CategoryResponse>>, t: Throwable){
                 Log.i("ITEM", "Failure")
-                Toast.makeText(this@CategoriesPaidActivity.context, "${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CategoriesPurchasedActivity.context, "${t.message}", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(
@@ -46,15 +47,10 @@ class CategoriesPaidActivity : Fragment(), RecyclerAdapter.OnItemClickListener {
 
                 if(response.code() == 200){
                     if (res != null) {
-                        recyclerView.adapter = RecyclerAdapter(true, res.toMutableList(), this@CategoriesPaidActivity)
+                        recyclerView.adapter = RecyclerAdapterNoClick(false, res.toMutableList())
                     }
                 }
             }
-
         } )
-    }
-
-    override fun onItemClick(position: Int) {
-        TODO("Not yet implemented")
     }
 }

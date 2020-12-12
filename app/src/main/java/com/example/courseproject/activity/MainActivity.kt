@@ -4,7 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.courseproject.R
+import com.example.courseproject.activity.auth.CategoriesAuthActivity
+import com.example.courseproject.activity.auth.ChangeCategoryAuthActivity
+import com.example.courseproject.activity.unauth.CategoriesActivity
+import com.example.courseproject.activity.unauth.ChangeCategoryActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.button
+import kotlinx.android.synthetic.main.activity_player_names.*
 import kotlinx.android.synthetic.main.mainappbar.*
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +33,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(newIntent)
         }
         button3.setOnClickListener {
-            val newIntent = Intent (this, CategoriesActivity::class.java)
+            val newIntent:Intent
+            if (MainActivity.Role.isEmpty()) {
+                newIntent = Intent(this, CategoriesActivity::class.java)
+            } else {
+                newIntent = Intent(this, CategoriesAuthActivity::class.java)
+            }
             startActivity(newIntent)
         }
         button4.setOnClickListener {
