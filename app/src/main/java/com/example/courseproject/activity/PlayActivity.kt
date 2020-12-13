@@ -57,6 +57,8 @@ class PlayActivity : AppCompatActivity() {
             } else {
                 newIntent = Intent(this, ChangeCategoryAuthActivity::class.java)
             }
+            newIntent.putExtra("name1", intent.getStringExtra("name1"))
+            newIntent.putExtra("name2", intent.getStringExtra("name2"))
             startActivity(newIntent)
         }
 

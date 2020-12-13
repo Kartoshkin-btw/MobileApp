@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.courseproject.Client
 import com.example.courseproject.R
@@ -35,7 +36,9 @@ class UsersCategoryActivity : AppCompatActivity(), RecyclerAdapter.OnItemClickLi
             startActivity(newIntent)
         }
         createButton.setOnClickListener {
-
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("123")
+            builder.show()
         }
         recyclerView.layoutManager = LinearLayoutManager(application)
         val request = Client.buildService(JsonPlaceHolderApi::class.java)

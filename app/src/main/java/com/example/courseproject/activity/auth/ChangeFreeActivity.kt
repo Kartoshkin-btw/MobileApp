@@ -53,7 +53,7 @@ class ChangeFreeActivity(val context: Activity, private val name1: String, priva
                 if(response.code() == 200){
                     if (res != null) {
                         list = res.toMutableList()
-                        recyclerView.adapter = RecyclerAdapter(true, list, this@ChangeFreeActivity)
+                        recyclerView.adapter = RecyclerAdapter(false, list, this@ChangeFreeActivity)
                     }
                 }
             }

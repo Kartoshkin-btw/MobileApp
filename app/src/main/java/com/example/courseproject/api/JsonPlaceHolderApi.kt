@@ -2,6 +2,7 @@ package com.example.courseproject.api
 
 import com.example.courseproject.body.AuthenticateBody
 import com.example.courseproject.body.BuyCategoryBody
+import com.example.courseproject.body.QuestionBody
 import com.example.courseproject.body.RegistrationBody
 import com.example.courseproject.response.AuthenticationResponse
 import com.example.courseproject.response.CategoryResponse
@@ -61,6 +62,10 @@ interface JsonPlaceHolderApi {
     fun getStatistic(@Path("date1") date1: Long, @Path("date2") date2: Long): Call<HashMap<String, Int>>
 
     @Headers("Content-Type: application/json")
-    @GET("api/questions/")
+    @POST("api/purchases/")
     fun buyCategory(@Header("Authorization") token: String, @Body buyCategoryBody: BuyCategoryBody): Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @POST("api/questions/")
+    fun createQuestion(@Header("Authorization") token: String, @Body questionBody: QuestionBody): Call<Void>
 }

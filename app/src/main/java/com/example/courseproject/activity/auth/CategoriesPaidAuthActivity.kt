@@ -82,5 +82,7 @@ class CategoriesPaidAuthActivity(val context: Activity) : Fragment(), RecyclerAd
                 }
             }
         })
+        val newIntent = Intent(context, MainActivity::class.java)
+        startActivity(newIntent)
     }
 }
