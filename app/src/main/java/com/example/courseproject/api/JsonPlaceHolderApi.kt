@@ -1,9 +1,6 @@
 package com.example.courseproject.api
 
-import com.example.courseproject.body.AuthenticateBody
-import com.example.courseproject.body.BuyCategoryBody
-import com.example.courseproject.body.QuestionBody
-import com.example.courseproject.body.RegistrationBody
+import com.example.courseproject.body.*
 import com.example.courseproject.response.AuthenticationResponse
 import com.example.courseproject.response.CategoryResponse
 import com.example.courseproject.response.LkResponse
@@ -68,4 +65,24 @@ interface JsonPlaceHolderApi {
     @Headers("Content-Type: application/json")
     @POST("api/questions/")
     fun createQuestion(@Header("Authorization") token: String, @Body questionBody: QuestionBody): Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @POST("api/category/user")
+    fun createUserCategory(@Header("Authorization") token: String, @Body categoryBody: CategoryBody): Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @POST("api/category/admin")
+    fun createAdminCategory(@Header("Authorization") token: String, @Body categoryBody: CategoryBody): Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @DELETE("api/category/{id}")
+    fun deleteCategory(@Header("Authorization") token: String, @Path("id") id: Int): Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @PUT("api/category/")
+    fun editCategory(@Header("Authorization") token: String, editCategoryBody: EditCategoryBody): Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @GET("api/categories/{id}")
+    fun getCategory(@Header("Authorization") token: String, @Path("id") id: Int): Call<EditCategoryBody>
 }

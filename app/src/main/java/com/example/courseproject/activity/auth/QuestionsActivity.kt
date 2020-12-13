@@ -13,6 +13,8 @@ import com.example.courseproject.R
 import com.example.courseproject.activity.MainActivity
 import com.example.courseproject.activity.RecyclerAdapter
 import com.example.courseproject.api.JsonPlaceHolderApi
+import com.example.courseproject.body.CategoryBody
+import com.example.courseproject.body.EditCategoryBody
 import com.example.courseproject.body.QuestionBody
 import com.example.courseproject.response.CategoryResponse
 import com.example.courseproject.response.QuestionResponse
@@ -39,10 +41,80 @@ class QuestionsActivity : AppCompatActivity(), QuestionsAdapter.OnItemClickListe
             startActivity(newIntent)
         }
         deleteButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Удаление")
+            builder.setMessage("Эта категория будет удалена. Вы уверены?")
+            builder.setPositiveButton("Удалить") { dialogInterface, i ->
+                recyclerView.layoutManager = LinearLayoutManager(application)
+                val request = Client.buildService(JsonPlaceHolderApi::class.java)
+                val response = request.deleteCategory(
+                    MainActivity.Token,
+                    intent.getStringExtra("categoryID").toString().toInt()
+                )
+                response.enqueue(object : Callback<Void> {
 
+                    override fun onFailure(call: Call<Void>, t: Throwable) {
+                        Toast.makeText(this@QuestionsActivity, "${t.message}", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                    override fun onResponse(
+                        call: Call<Void>,
+                        response: Response<Void>
+                    ) {
+                        if (response.code() == 200) {
+                        }
+                    }
+                })
+                val newIntent = Intent (this, UsersCategoryActivity::class.java)
+                startActivity(newIntent)
+            }
+            builder.setNegativeButton("Отмена",null)
+            builder.show()
         }
         editButton.setOnClickListener {
+            if (MainActivity.Role == "User") {
+                val builder = AlertDialog.Builder(this)
+                val inflater = layoutInflater
+                builder.setTitle("Редактирование категории")
+                val dialogLayout = inflater.inflate(R.layout.alert_dialog_question, null)
+                val editText = dialogLayout.findViewById<EditText>(R.id.editText)
+                editText.hint = "Название категории"
+                editText.setText(intent.getStringExtra("categoryName"))
+                builder.setView(dialogLayout)
+                builder.setPositiveButton("Изменить") { dialogInterface, i ->
+                    recyclerView.layoutManager = LinearLayoutManager(application)
+                    val request = Client.buildService(JsonPlaceHolderApi::class.java)
+                    val editCategoryBody = EditCategoryBody(intent.getStringExtra("categoryID").toString().toInt(),editText.text.toString(), 0, false)
+                    val response = request.editCategory(MainActivity.Token, editCategoryBody)
+                    response.enqueue(object : Callback<Void> {
 
+                        override fun onFailure(call: Call<Void>, t: Throwable) {
+                            Toast.makeText(
+                                this@QuestionsActivity,
+                                "${t.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        override fun onResponse(
+                            call: Call<Void>,
+                            response: Response<Void>
+                        ) {
+                            if (response.code() == 200) {
+                            }
+                        }
+                    })
+                }
+                builder.setNegativeButton("Отмена",null)
+                builder.show()
+            }else if (MainActivity.Role == "Admin"){
+                val newIntent = Intent(this, CreateAdminCategoryActivity::class.java).apply {
+                    putExtra("categoryID", intent.getStringExtra("categoryID"))
+                    putExtra("categoryName", intent.getStringExtra("categoryName"))
+                }
+                startActivity(newIntent)
+            }
         }
         createQuestion.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -50,6 +122,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionsAdapter.OnItemClickListe
             builder.setTitle("Введите вопрос")
             val dialogLayout = inflater.inflate(R.layout.alert_dialog_question, null)
             val editText = dialogLayout.findViewById<EditText>(R.id.editText)
+            editText.hint = "Текст вопроса"
             builder.setView(dialogLayout)
             builder.setPositiveButton("Создать"){dialogInterface, i ->
                 recyclerView.layoutManager = LinearLayoutManager(application)

@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.auth.QuestionsActivity"></activity>
+        <activity android:name=".activity.auth.EditAdminCategoryActivity"></activity>
+        <activity android:name=".activity.auth.CreateAdminCategoryActivity" />
+        <activity android:name=".activity.auth.QuestionsActivity" />
         <activity android:name=".activity.auth.UsersCategoryActivity" />
         <activity android:name=".activity.auth.StatisticActivity" />
         <activity android:name=".activity.auth.Profile" />
