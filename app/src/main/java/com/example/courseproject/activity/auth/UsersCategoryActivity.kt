@@ -49,7 +49,6 @@ class UsersCategoryActivity : AppCompatActivity(), RecyclerAdapter.OnItemClickLi
                 editText.hint = "Название категории"
                 builder.setView(dialogLayout)
                 builder.setPositiveButton("Создать") { dialogInterface, i ->
-                    recyclerView.layoutManager = LinearLayoutManager(application)
                     val request = Client.buildService(JsonPlaceHolderApi::class.java)
                     val categoryBody = CategoryBody(editText.text.toString(), 0, false)
                     val response = request.createUserCategory(MainActivity.Token, categoryBody)

@@ -67,19 +67,19 @@ interface JsonPlaceHolderApi {
     fun createQuestion(@Header("Authorization") token: String, @Body questionBody: QuestionBody): Call<Void>
 
     @Headers("Content-Type: application/json")
-    @POST("api/category/user")
+    @POST("api/categories/user")
     fun createUserCategory(@Header("Authorization") token: String, @Body categoryBody: CategoryBody): Call<Void>
 
     @Headers("Content-Type: application/json")
-    @POST("api/category/admin")
+    @POST("api/categories/admin")
     fun createAdminCategory(@Header("Authorization") token: String, @Body categoryBody: CategoryBody): Call<Void>
 
     @Headers("Content-Type: application/json")
-    @DELETE("api/category/{id}")
+    @DELETE("api/categories/{id}")
     fun deleteCategory(@Header("Authorization") token: String, @Path("id") id: Int): Call<Void>
 
     @Headers("Content-Type: application/json")
-    @PUT("api/category/")
+    @PUT("api/categories/")
     fun editCategory(@Header("Authorization") token: String, editCategoryBody: EditCategoryBody): Call<Void>
 
     @Headers("Content-Type: application/json")
