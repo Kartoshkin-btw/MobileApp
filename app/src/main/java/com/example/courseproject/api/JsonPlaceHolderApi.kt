@@ -85,4 +85,12 @@ interface JsonPlaceHolderApi {
     @Headers("Content-Type: application/json")
     @GET("api/categories/{id}")
     fun getCategory(@Header("Authorization") token: String, @Path("id") id: Int): Call<EditCategoryBody>
+
+    @Headers("Content-Type: application/json")
+    @DELETE("api/questions/{id}")
+    fun deleteQuestion(@Header("Authorization") token: String, @Path("id") id: Int): Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @PUT("api/questions/")
+    fun editQuestion(@Header("Authorization") token: String, @Body editQuestionBody: EditQuestionBody): Call<Void>
 }

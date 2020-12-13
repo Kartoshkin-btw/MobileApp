@@ -13,6 +13,7 @@ import com.example.courseproject.R
 import com.example.courseproject.activity.MainActivity
 import com.example.courseproject.api.JsonPlaceHolderApi
 import com.example.courseproject.body.EditCategoryBody
+import com.example.courseproject.body.EditQuestionBody
 import com.example.courseproject.body.QuestionBody
 import com.example.courseproject.response.QuestionResponse
 import kotlinx.android.synthetic.main.activity_questions.*
@@ -136,10 +137,10 @@ class QuestionsActivity : AppCompatActivity(), QuestionsAdapter.OnItemClickListe
                         response: Response<Void>
                     ) {
                         if (response.code() == 200) {
+                            setList()
                         }
                     }
                 })
-                setList()
             }
             builder.setNegativeButton("Отмена",null)
             builder.show()
@@ -148,7 +149,55 @@ class QuestionsActivity : AppCompatActivity(), QuestionsAdapter.OnItemClickListe
     }
 
     override fun onItemClick(position: Int) {
-        TODO("Not yet implemented")
+        val builder = AlertDialog.Builder(this)
+        val inflater = layoutInflater
+        builder.setTitle("Введите вопрос")
+        val dialogLayout = inflater.inflate(R.layout.alert_dialog_question, null)
+        val editText = dialogLayout.findViewById<EditText>(R.id.editText)
+        editText.hint = "Текст вопроса"
+        editText.setText(list[position].text)
+        builder.setView(dialogLayout)
+        builder.setPositiveButton("Изменить"){dialogInterface, i ->
+            val request = Client.buildService(JsonPlaceHolderApi::class.java)
+            val editQuestionBody = EditQuestionBody(list[position].id.toString().toInt(), editText.text.toString(), intent.getStringExtra("categoryID").toString().toInt())
+            val response = request.editQuestion(MainActivity.Token, editQuestionBody)
+            response.enqueue(object : Callback<Void> {
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Toast.makeText(this@QuestionsActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onResponse(
+                    call: Call<Void>,
+                    response: Response<Void>
+                ) {
+                    if (response.code() == 200) {
+                        setList()
+                    }
+                }
+            })
+        }
+        builder.setNegativeButton("Удалить"){dialogInterface, i ->
+            val request = Client.buildService(JsonPlaceHolderApi::class.java)
+            val response = request.deleteQuestion(MainActivity.Token, list[position].id.toString().toInt())
+            response.enqueue(object : Callback<Void> {
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Toast.makeText(this@QuestionsActivity, "${t.message}", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onResponse(
+                    call: Call<Void>,
+                    response: Response<Void>
+                ) {
+                    if (response.code() == 200) {
+                        setList()
+                    }
+                }
+            })
+        }
+        builder.setNeutralButton("Отмена",null)
+        builder.show()
     }
     private fun setList(){
         recyclerView.layoutManager = LinearLayoutManager(application)
