@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.courseproject.Client
@@ -59,12 +60,14 @@ class EditAdminCategoryActivity : AppCompatActivity() {
                 val res = response.body()
                 if (response.code() == 200) {
                     if (res != null) {
-                        titleText.setText(res.title)
-                        priceText.setText(res.price)
+                        val titleT = findViewById<EditText>(R.id.titleText)
+                        val priceT = findViewById<EditText>(R.id.priceText)
+                        titleT.setText(res.title)
+                        priceT.setText(res.price.toString())
                         if (res.purchaseRequirement)
                             checkBoxTrue.isChecked = true
                         else
-                            checkBoxFalse.isChecked = false
+                            checkBoxFalse.isChecked = true
                     }
                 }
             }

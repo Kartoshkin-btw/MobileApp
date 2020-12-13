@@ -91,7 +91,7 @@
             android:padding="2dp">
 
             <CheckBox
-                android:id="@+id/purchaseRequirementTrue"
+                android:id="@+id/purchaseRequirementFalse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -125,7 +125,7 @@
             android:padding="2dp">
 
             <CheckBox
-                android:id="@+id/purchaseRequirementFalse"
+                android:id="@+id/purchaseRequirementTrue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
