@@ -22,7 +22,6 @@ class CategoriesAuthActivity : AppCompatActivity() {
 
     lateinit var tabLayout: TabLayout
     lateinit var viewPager: ViewPager
-    private lateinit var balance: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,9 +49,9 @@ class CategoriesAuthActivity : AppCompatActivity() {
 
                 if(response.code() == 200){
                     if (res != null) {
+                        balanceName.visibility = View.VISIBLE
                         balanceText.visibility = View.VISIBLE
-                        balance = "Balance: " + res.toString()
-                        balanceText.text = balance
+                        balanceText.text = res.toString()
                     }
                 }
             }

@@ -45,8 +45,9 @@ class Profile : AppCompatActivity() {
 
                 if(response.code() == 200){
                     if (res != null) {
+                        balanceName.visibility = View.VISIBLE
                         balanceText.visibility = View.VISIBLE
-                        balanceText.text = "Balance: " + res.balance
+                        balanceText.text = res.balance
                         usernameText.text = res.username
                         nameText.text = res.name
                     }

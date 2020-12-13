@@ -8,7 +8,7 @@ import com.example.courseproject.activity.CategoriesFreeActivity
 
 @Suppress("DEPRECATION")
 internal class CategoriesAuthAdapter (
-    var context: Activity,
+    val context: Activity,
     fm: FragmentManager,
     var totalTabs: Int
 ) :
