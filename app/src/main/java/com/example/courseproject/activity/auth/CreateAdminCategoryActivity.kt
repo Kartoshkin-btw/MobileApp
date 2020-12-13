@@ -39,7 +39,6 @@ class CreateAdminCategoryActivity : AppCompatActivity() {
             checkBoxFalse.isChecked = false
         }
         createButton.setOnClickListener {
-            recyclerView.layoutManager = LinearLayoutManager(application)
             var purchasedRequirement: Boolean = false
             if (checkBoxTrue.isChecked)
                 purchasedRequirement = true

@@ -70,7 +70,6 @@ class EditAdminCategoryActivity : AppCompatActivity() {
             }
         })
         editButton.setOnClickListener {
-            recyclerView.layoutManager = LinearLayoutManager(application)
             var purchasedRequirement: Boolean = false
             if (checkBoxTrue.isChecked)
                 purchasedRequirement = true

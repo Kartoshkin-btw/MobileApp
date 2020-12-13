@@ -111,7 +111,7 @@ class QuestionsActivity : AppCompatActivity(), QuestionsAdapter.OnItemClickListe
                 builder.setNegativeButton("Отмена",null)
                 builder.show()
             }else if (MainActivity.Role == "Admin"){
-                val newIntent = Intent(this, CreateAdminCategoryActivity::class.java).apply {
+                val newIntent = Intent(this, EditAdminCategoryActivity::class.java).apply {
                     putExtra("categoryID", intent.getStringExtra("categoryID"))
                     putExtra("categoryName", intent.getStringExtra("categoryName"))
                 }

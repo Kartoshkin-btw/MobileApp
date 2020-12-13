@@ -44,7 +44,8 @@ class StatisticActivity : AppCompatActivity() {
         
         setStartData.setOnClickListener {
             val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                setStartData.text = dayOfMonth.toString() + "/" + month + "/" + year
+                val mMonth: Int = month+1
+                setStartData.text = dayOfMonth.toString() + "/" + mMonth + "/" + year
                 c.set(year, month, dayOfMonth)
                 data1 = c.timeInMillis
             }, year, month, day)
@@ -52,7 +53,8 @@ class StatisticActivity : AppCompatActivity() {
         }
         setEndData.setOnClickListener {
             val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                setEndData.text = dayOfMonth.toString() + "/" + month + "/" + year
+                val mMonth: Int = month+1
+                setEndData.text = dayOfMonth.toString() + "/" + mMonth + "/" + year
                 c.set(year, month, dayOfMonth)
                 data2 = c.timeInMillis
             }, year, month, day)
