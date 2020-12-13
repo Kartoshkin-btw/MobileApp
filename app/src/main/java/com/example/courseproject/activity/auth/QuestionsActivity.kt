@@ -105,6 +105,8 @@ class QuestionsActivity : AppCompatActivity(), QuestionsAdapter.OnItemClickListe
                             }
                         }
                     })
+                    val newIntent = Intent (this, UsersCategoryActivity::class.java)
+                    startActivity(newIntent)
                 }
                 builder.setNegativeButton("Отмена",null)
                 builder.show()
@@ -143,10 +145,18 @@ class QuestionsActivity : AppCompatActivity(), QuestionsAdapter.OnItemClickListe
                         }
                     }
                 })
+                setList()
             }
             builder.setNegativeButton("Отмена",null)
             builder.show()
         }
+        setList()
+    }
+
+    override fun onItemClick(position: Int) {
+        TODO("Not yet implemented")
+    }
+    private fun setList(){
         recyclerView.layoutManager = LinearLayoutManager(application)
         val request = Client.buildService(JsonPlaceHolderApi::class.java)
         val response = request.getQuestions(intent.getStringExtra("categoryID").toString().toInt())
@@ -171,9 +181,5 @@ class QuestionsActivity : AppCompatActivity(), QuestionsAdapter.OnItemClickListe
                 }
             }
         })
-    }
-
-    override fun onItemClick(position: Int) {
-        TODO("Not yet implemented")
     }
 }

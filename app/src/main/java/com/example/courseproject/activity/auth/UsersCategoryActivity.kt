@@ -71,6 +71,7 @@ class UsersCategoryActivity : AppCompatActivity(), RecyclerAdapter.OnItemClickLi
                             }
                         }
                     })
+                    setList()
                 }
                 builder.setNegativeButton("Отмена",null)
                 builder.show()
@@ -79,6 +80,17 @@ class UsersCategoryActivity : AppCompatActivity(), RecyclerAdapter.OnItemClickLi
                 startActivity(newIntent)
             }
         }
+        setList()
+    }
+
+    override fun onItemClick(position: Int) {
+        val newIntent = Intent (this, QuestionsActivity::class.java).apply {
+            putExtra("categoryName", list[position].title)
+            putExtra("categoryID", list[position].id.toString())
+        }
+        startActivity(newIntent)
+    }
+    private fun setList() {
         recyclerView.layoutManager = LinearLayoutManager(application)
         val request = Client.buildService(JsonPlaceHolderApi::class.java)
         val response = request.getCustomCategories(MainActivity.Token)
@@ -107,13 +119,5 @@ class UsersCategoryActivity : AppCompatActivity(), RecyclerAdapter.OnItemClickLi
                 }
             }
         } )
-    }
-
-    override fun onItemClick(position: Int) {
-        val newIntent = Intent (this, QuestionsActivity::class.java).apply {
-            putExtra("categoryName", list[position].title)
-            putExtra("categoryID", list[position].id.toString())
-        }
-        startActivity(newIntent)
     }
 }
