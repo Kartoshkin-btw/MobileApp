@@ -6,19 +6,12 @@ import android.os.Bundle
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.courseproject.Client
 import com.example.courseproject.R
 import com.example.courseproject.activity.MainActivity
 import com.example.courseproject.api.JsonPlaceHolderApi
-import com.example.courseproject.body.CategoryBody
 import com.example.courseproject.body.EditCategoryBody
-import kotlinx.android.synthetic.main.activity_create_admin_category.*
-import kotlinx.android.synthetic.main.activity_create_admin_category.createButton
-import kotlinx.android.synthetic.main.activity_create_admin_category.priceText
-import kotlinx.android.synthetic.main.activity_create_admin_category.titleText
 import kotlinx.android.synthetic.main.activity_edit_admin_category.*
-import kotlinx.android.synthetic.main.activity_users_category.*
 import kotlinx.android.synthetic.main.appbar.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,6 +28,8 @@ class EditAdminCategoryActivity : AppCompatActivity() {
         }
         val checkBoxFalse = findViewById<CheckBox>(R.id.purchaseRequirementFalse)
         val checkBoxTrue = findViewById<CheckBox>(R.id.purchaseRequirementTrue)
+        val titleT = findViewById<EditText>(R.id.titleText)
+        val priceT = findViewById<EditText>(R.id.priceText)
         checkBoxFalse.setOnClickListener{
             checkBoxTrue.isChecked = false
         }
@@ -60,8 +55,6 @@ class EditAdminCategoryActivity : AppCompatActivity() {
                 val res = response.body()
                 if (response.code() == 200) {
                     if (res != null) {
-                        val titleT = findViewById<EditText>(R.id.titleText)
-                        val priceT = findViewById<EditText>(R.id.priceText)
                         titleT.setText(res.title)
                         priceT.setText(res.price.toString())
                         if (res.purchaseRequirement)
@@ -73,10 +66,14 @@ class EditAdminCategoryActivity : AppCompatActivity() {
             }
         })
         editButton.setOnClickListener {
-            var purchasedRequirement: Boolean = false
+            var purchaseRequirement: Boolean = false
             if (checkBoxTrue.isChecked)
-                purchasedRequirement = true
-            val editCategoryBody = EditCategoryBody(intent.getStringExtra("categoryID").toString().toInt(), titleText.text.toString(), priceText.text.toString().toInt(), purchasedRequirement)
+                purchaseRequirement = true
+            val editCategoryBody = EditCategoryBody(
+                intent.getStringExtra("categoryID").toString().toInt(),
+                titleT.text.toString(),
+                priceT.text.toString().toInt(),
+                purchaseRequirement)
             val response = request.editCategory(MainActivity.Token, editCategoryBody)
             response.enqueue(object : Callback<Void> {
 

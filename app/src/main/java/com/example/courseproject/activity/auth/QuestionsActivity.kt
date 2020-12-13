@@ -11,22 +11,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.courseproject.Client
 import com.example.courseproject.R
 import com.example.courseproject.activity.MainActivity
-import com.example.courseproject.activity.RecyclerAdapter
 import com.example.courseproject.api.JsonPlaceHolderApi
-import com.example.courseproject.body.CategoryBody
 import com.example.courseproject.body.EditCategoryBody
 import com.example.courseproject.body.QuestionBody
-import com.example.courseproject.response.CategoryResponse
 import com.example.courseproject.response.QuestionResponse
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_questions.*
 import kotlinx.android.synthetic.main.activity_questions.recyclerView
-import kotlinx.android.synthetic.main.activity_users_category.*
 import kotlinx.android.synthetic.main.appbar.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.zip.Inflater
 
 class QuestionsActivity : AppCompatActivity(), QuestionsAdapter.OnItemClickListener {
 

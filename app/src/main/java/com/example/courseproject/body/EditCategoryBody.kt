@@ -6,3 +6,4 @@ class EditCategoryBody (
     internal val price: Int,
     internal val purchaseRequirement: Boolean
 )
+

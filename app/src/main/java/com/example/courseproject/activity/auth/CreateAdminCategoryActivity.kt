@@ -39,11 +39,11 @@ class CreateAdminCategoryActivity : AppCompatActivity() {
             checkBoxFalse.isChecked = false
         }
         createButton.setOnClickListener {
-            var purchasedRequirement: Boolean = false
+            var purchaseRequirement: Boolean = false
             if (checkBoxTrue.isChecked)
-                purchasedRequirement = true
+                purchaseRequirement = true
             val request = Client.buildService(JsonPlaceHolderApi::class.java)
-            val categoryBody = CategoryBody(titleText.text.toString(), priceText.text.toString().toInt(), purchasedRequirement)
+            val categoryBody = CategoryBody(titleText.text.toString(), priceText.text.toString().toInt(), purchaseRequirement)
             val response = request.createAdminCategory(MainActivity.Token, categoryBody)
             response.enqueue(object : Callback<Void> {
 

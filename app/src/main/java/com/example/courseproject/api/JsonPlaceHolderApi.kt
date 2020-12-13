@@ -80,7 +80,7 @@ interface JsonPlaceHolderApi {
 
     @Headers("Content-Type: application/json")
     @PUT("api/categories/")
-    fun editCategory(@Header("Authorization") token: String, editCategoryBody: EditCategoryBody): Call<Void>
+    fun editCategory(@Header("Authorization") token: String, @Body editCategoryBody: EditCategoryBody): Call<Void>
 
     @Headers("Content-Type: application/json")
     @GET("api/categories/{id}")
