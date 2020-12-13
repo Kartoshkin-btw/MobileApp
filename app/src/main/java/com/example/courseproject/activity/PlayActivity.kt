@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import com.example.courseproject.Client
 import com.example.courseproject.R
 import com.example.courseproject.activity.auth.ChangeCategoryAuthActivity
@@ -50,16 +51,24 @@ class PlayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
         mainText.text="Ответь за 5 секунд"
+
         imageButton.setOnClickListener {
-            val newIntent:Intent
-            if (MainActivity.Role.isEmpty()) {
-                newIntent = Intent(this, ChangeCategoryActivity::class.java)
-            } else {
-                newIntent = Intent(this, ChangeCategoryAuthActivity::class.java)
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Выход")
+            builder.setMessage("Игра будет завершена. Вы уверены, что хотите выйти? ")
+            builder.setPositiveButton("Выход") { dialogInterface, i ->
+                val newIntent: Intent
+                if (MainActivity.Role.isEmpty()) {
+                    newIntent = Intent(this, ChangeCategoryActivity::class.java)
+                } else {
+                    newIntent = Intent(this, ChangeCategoryAuthActivity::class.java)
+                }
+                newIntent.putExtra("name1", intent.getStringExtra("name1"))
+                newIntent.putExtra("name2", intent.getStringExtra("name2"))
+                startActivity(newIntent)
             }
-            newIntent.putExtra("name1", intent.getStringExtra("name1"))
-            newIntent.putExtra("name2", intent.getStringExtra("name2"))
-            startActivity(newIntent)
+            builder.setNegativeButton("Отмена",null)
+            builder.show()
         }
 
         val request = Client.buildService(JsonPlaceHolderApi::class.java)
@@ -140,10 +149,24 @@ class PlayActivity : AppCompatActivity() {
                 turn = "1"
             }
             if (score1.text == "20") {
-                score1.text = "Win"
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Игра окончена")
+                builder.setMessage(playerName.text.toString() + " победил!")
+                builder.setPositiveButton("Ок") { dialogInterface, i ->
+                    val newIntent = Intent(this, MainActivity::class.java)
+                    startActivity(newIntent)
+                }
+                builder.show()
             }
             if (score2.text == "20") {
-                score2.text = "Win"
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Игра окончена")
+                builder.setMessage(playerName2.text.toString() + " победил!")
+                builder.setPositiveButton("Ок") { dialogInterface, i ->
+                    val newIntent = Intent(this, MainActivity::class.java)
+                    startActivity(newIntent)
+                }
+                builder.show()
             }
         }
     }
