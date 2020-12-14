@@ -122,7 +122,6 @@ class QuestionsActivity : AppCompatActivity(), QuestionsAdapter.OnItemClickListe
             editText.hint = "Текст вопроса"
             builder.setView(dialogLayout)
             builder.setPositiveButton("Создать"){dialogInterface, i ->
-                recyclerView.layoutManager = LinearLayoutManager(application)
                 val request = Client.buildService(JsonPlaceHolderApi::class.java)
                 val questionBody = QuestionBody(editText.text.toString(), intent.getStringExtra("categoryID").toString().toInt())
                 val response = request.createQuestion(MainActivity.Token, questionBody)

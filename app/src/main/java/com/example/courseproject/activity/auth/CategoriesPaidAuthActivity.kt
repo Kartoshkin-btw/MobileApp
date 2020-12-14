@@ -64,31 +64,6 @@ class CategoriesPaidAuthActivity(val context: Activity) : Fragment(), RecyclerAd
                 }
             }
         } )
-//        recyclerView.layoutManager = LinearLayoutManager(activity)
-//        val request = Client.buildService(JsonPlaceHolderApi::class.java)
-//        val response = request.getNoPurchasedCategories(MainActivity.Token)
-//        response.enqueue(object: Callback<List<CategoryResponse>> {
-//
-//            override fun onFailure(call: Call<List<CategoryResponse>>, t: Throwable){
-//                Log.i("ITEM", "Failure")
-//                Toast.makeText(this@CategoriesPaidAuthActivity.context, "${t.message}", Toast.LENGTH_SHORT).show()
-//            }
-//
-//            override fun onResponse(
-//                call: Call<List<CategoryResponse>>,
-//                response: Response<List<CategoryResponse>>
-//            ) {
-//                val res = response.body()
-//
-//                if(response.code() == 200){
-//                    if (res != null) {
-//                        list = res.toMutableList()
-//                        recyclerView.adapter = RecyclerAdapter(true, list, this@CategoriesPaidAuthActivity)
-//                    }
-//                }
-//            }
-//
-//        } )
     }
 
     override fun onItemClick(position: Int) {

@@ -1,10 +1,7 @@
 package com.example.courseproject.api
 
 import com.example.courseproject.body.*
-import com.example.courseproject.response.AuthenticationResponse
-import com.example.courseproject.response.CategoryResponse
-import com.example.courseproject.response.LkResponse
-import com.example.courseproject.response.QuestionResponse
+import com.example.courseproject.response.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -93,4 +90,24 @@ interface JsonPlaceHolderApi {
     @Headers("Content-Type: application/json")
     @PUT("api/questions/")
     fun editQuestion(@Header("Authorization") token: String, @Body editQuestionBody: EditQuestionBody): Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @GET("api/bonuses/bonus")
+    fun gainBonus(@Header("Authorization") token: String): Call<HashMap<String, String>>
+
+    @Headers("Content-Type: application/json")
+    @GET("api/bonuses/")
+    fun getBonuses(@Header("Authorization") token: String): Call<List<BonusResponse>>
+
+    @Headers("Content-Type: application/json")
+    @POST("api/bonuses/")
+    fun createBonus(@Header("Authorization") token: String, @Body bonusBody: BonusBody): Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @PUT("api/bonuses/")
+    fun editBonus(@Header("Authorization") token: String, @Body editBonusBody: EditBonusBody): Call<Void>
+
+    @Headers("Content-Type: application/json")
+    @DELETE("api/bonuses/{id}")
+    fun deleteBonus(@Header("Authorization") token: String, @Path("id") id: Int): Call<Void>
 }

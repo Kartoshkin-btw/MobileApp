@@ -59,7 +59,8 @@ class Profile : AppCompatActivity() {
             startActivity(newIntent)
         }
         bonusButton.setOnClickListener {
-
+            val newIntent = Intent(this, BonusesActivity::class.java)
+            startActivity(newIntent)
         }
         logoutButton.setOnClickListener {
             MainActivity.Name = ""
