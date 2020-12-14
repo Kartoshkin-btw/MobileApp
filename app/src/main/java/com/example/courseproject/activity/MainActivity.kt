@@ -6,13 +6,12 @@ import android.os.Bundle
 import android.view.View
 import com.example.courseproject.R
 import com.example.courseproject.activity.auth.CategoriesAuthActivity
-import com.example.courseproject.activity.auth.ChangeCategoryAuthActivity
 import com.example.courseproject.activity.auth.Profile
+import com.example.courseproject.activity.unauth.AuthorizationActivity
 import com.example.courseproject.activity.unauth.CategoriesActivity
-import com.example.courseproject.activity.unauth.ChangeCategoryActivity
+import com.example.courseproject.activity.unauth.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.button
-import kotlinx.android.synthetic.main.activity_player_names.*
 import kotlinx.android.synthetic.main.mainappbar.*
 
 class MainActivity : AppCompatActivity() {
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(newIntent)
         }
         button4.setOnClickListener {
-            val newIntent = Intent (this, LoginActivity::class.java)
+            val newIntent = Intent(this, AuthorizationActivity::class.java)
             startActivity(newIntent)
         }
         lkButton.setOnClickListener {

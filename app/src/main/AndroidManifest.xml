@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.unauth.AuthorizationActivity"></activity>
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.auth.BonusesActivity" />
         <activity android:name=".activity.auth.EditAdminCategoryActivity" />
         <activity android:name=".activity.auth.CreateAdminCategoryActivity" />
@@ -33,9 +34,9 @@
         <activity android:name=".activity.unauth.ChangeCategoryActivity" />
         <activity android:name=".activity.PlayerNamesActivity" />
         <activity android:name=".activity.RulesActivity" />
-        <activity android:name=".activity.RegistrationActivity" />
+        <activity android:name=".activity.unauth.RegistrationActivity" />
         <activity android:name=".activity.PlayActivity" />
-        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.unauth.LoginActivity" />
         <activity android:name=".activity.unauth.CategoriesActivity" />
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
