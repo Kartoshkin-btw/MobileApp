@@ -143,7 +143,10 @@ class BonusesActivity : AppCompatActivity(), BonusesAdapter.OnItemClickListener 
                 if(response.code() == 200){
                     if (res != null) {
                         list = res.toMutableList()
-                        recyclerView.adapter = BonusesAdapter(list, this@BonusesActivity)
+                        if (MainActivity.Role == "Admin")
+                            recyclerView.adapter = BonusesAdapter(list, this@BonusesActivity)
+                        else
+                            recyclerView.adapter = BonusesAdapterNoClick(list)
                     }
                 }
             }
