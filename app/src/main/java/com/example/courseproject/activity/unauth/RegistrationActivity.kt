@@ -65,52 +65,6 @@ class RegistrationActivity(val context: Activity) : Fragment() {
             })
         }
     }
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_registration)
-//        mainText.text="Регистрация"
-//        val request = Client.buildService(JsonPlaceHolderApi::class.java)
-//        imageButton.setOnClickListener {
-//            val newIntent = Intent (this, LoginActivity::class.java)
-//            startActivity(newIntent)
-//        }
-//        log_button.setOnClickListener {
-//            val newIntent = Intent (this, LoginActivity::class.java)
-//            startActivity(newIntent)
-//        }
-//
-//        reg_button.setOnClickListener {
-//            val newIntent = Intent(this, LoginActivity::class.java)
-//
-//            val password = password_reg.text.toString()
-//            val username = username_reg.text.toString()
-//            val name = name_reg.text.toString()
-//
-//            if (!validateInput(username, password, name)) return@setOnClickListener
-//
-//            val registrationBody = RegistrationBody(username, password, name)
-//            val response = request.checkIn(registrationBody)
-//
-//            response.enqueue(object : Callback<Void> {
-//
-//                override fun onFailure(call: Call<Void>, t: Throwable) {
-//                    Toast.makeText(this@RegistrationActivity, "${t.message}", Toast.LENGTH_SHORT)
-//                        .show()
-//                }
-//
-//                override fun onResponse(
-//                    call: Call<Void>,
-//                    response: Response<Void>
-//                ) {
-//                    if (response.code() == 200) {
-//                        startActivity(newIntent)
-//                    } else {
-//                        error_msg_reg.text = "Данный логин уже существует" + response.code()
-//                    }
-//                }
-//            })
-//        }
-//    }
     fun validateInput(username: String, password: String, name: String): Boolean{
         //Проверка имени (Только буквы)
         val pattern: Pattern = Pattern.compile(("^[a-zA-Z ]+$"))
