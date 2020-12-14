@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.courseproject.Client
 import com.example.courseproject.R
 import com.example.courseproject.activity.MainActivity
 import com.example.courseproject.api.JsonPlaceHolderApi
+import com.example.courseproject.body.EditQuestionBody
+import com.example.courseproject.body.UserBody
 import com.example.courseproject.response.LkResponse
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.appbar.*
@@ -54,6 +58,43 @@ class Profile : AppCompatActivity() {
                 }
             }
         } )
+        editNameButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val inflater = layoutInflater
+            builder.setTitle("Изменить имя")
+            val dialogLayout = inflater.inflate(R.layout.alert_dialog_question, null)
+            val editText = dialogLayout.findViewById<EditText>(R.id.editText)
+            editText.hint = "name"
+            editText.setText(nameText.text)
+            builder.setView(dialogLayout)
+            builder.setPositiveButton("Изменить"){dialogInterface, i ->
+                val request = Client.buildService(JsonPlaceHolderApi::class.java)
+                val userBody = UserBody(editText.text.toString())
+                val response = request.setUserName(MainActivity.Token, userBody)
+                response.enqueue(object: Callback<LkResponse> {
+
+                    override fun onFailure(call: Call<LkResponse>, t: Throwable){
+                        Log.i("ITEM", "Failure")
+                        Toast.makeText(application, "${t.message}", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onResponse(
+                        call: Call<LkResponse>,
+                        response: Response<LkResponse>
+                    ) {
+                        val res = response.body()
+
+                        if(response.code() == 200){
+                            if (res != null) {
+                                nameText.text = res.name
+                            }
+                        }
+                    }
+                } )
+            }
+            builder.setNeutralButton("Отмена",null)
+            builder.show()
+        }
         userCategories.setOnClickListener {
             val newIntent = Intent(this, UsersCategoryActivity::class.java)
             startActivity(newIntent)

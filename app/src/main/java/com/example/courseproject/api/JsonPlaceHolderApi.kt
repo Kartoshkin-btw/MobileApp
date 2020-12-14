@@ -44,6 +44,10 @@ interface JsonPlaceHolderApi {
     fun getLk(@Header("Authorization") token: String): Call<LkResponse>
 
     @Headers("Content-Type: application/json")
+    @PUT("api/users/")
+    fun setUserName(@Header("Authorization") token: String, @Body userBody: UserBody): Call<LkResponse>
+
+    @Headers("Content-Type: application/json")
     @GET("api/categories/admin")
     fun getAdminCategories(): Call<List<CategoryResponse>>
 

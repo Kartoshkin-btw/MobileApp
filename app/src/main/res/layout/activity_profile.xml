@@ -66,6 +66,16 @@
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/usernameText" />
 
+    <ImageButton
+        android:id="@+id/editNameButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="13dp"
+        android:background="#FFFFFF"
+        android:src="@drawable/ic_baseline_create_24"
+        app:layout_constraintStart_toEndOf="@+id/nameText"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
     <Button
         android:id="@+id/userCategories"
         android:layout_width="194dp"
